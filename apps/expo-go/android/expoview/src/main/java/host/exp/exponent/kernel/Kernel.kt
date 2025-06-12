@@ -454,7 +454,8 @@ class Kernel : KernelInterface() {
   private fun shouldOpenUrl(uri: Uri): Boolean {
     val host = uri.host ?: ""
     val path = uri.path ?: ""
-    return !(((host == "expo.io") || (host == "expo.dev")) && (path == "/expo-go"))
+    return !(((host == "expo.io") || (host == "expo.dev")) && (path == "/expo-go") ||
+             ((uri.toString().startsWith("exp://") || uri.toString().startsWith("exps://")) && (host.isEmpty() || host.isBlank())))
   }
 
   private fun openExperienceFromNotificationIntent(intent: Intent): Boolean {
